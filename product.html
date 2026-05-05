@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+
+    <!--Fonts-->
+
+    <!--Font: Playfair Display-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Amatic+SC:wght@400;700&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Lora:ital,wght@0,400..700;1,400..700&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
+    
+    <!--Font: Inter-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Amatic+SC:wght@400;700&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Lora:ital,wght@0,400..700;1,400..700&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
+    <title>Evopia</title>
+</head>
+<body>
+        <!--Navigation bar-->
+        <!--Logo-->
+        <header class="navbar">
+            <a href="index.html" class="logo" aria-label="Evopia home">
+                <img src="ASSETS/evopia new logo.svg" class="logo-vector">
+            </a>
+
+        <!--Search bar-->
+        <form class="search" role="search">
+            <input type="search" placeholder="Search product">
+            <button type="submit" aria-label="Search">
+                <span class="search-icon"></span>
+            </button>
+        </form>
+
+        <!--Navigation links-->
+        <nav class="nav-links" aria-label="Main navigation">
+            <a href="#">Shop</a>
+            <a href="#">Best Sellers</a>
+            <a href="#">About</a>
+            <a href="#">Contact Us</a>
+        </nav>
+
+        <!--Cart icon-->
+        <a href="#" class="cart" aria-label="Cart">
+            <img src="ASSETS/cart-svgrepo-com.svg" alt="cart" class="cart-icon">
+            <span class="cart-count">0</span>
+        </a>
+
+        </header>
+        <main class="product-page">
+            <section class="product-hero">
+                <div class="product-hero-copy">
+                    <h1>King Size Pillow Set</h1>
+
+                    <div class="product-hero-price-row">
+                        <span class="product-hero-price">$81.00</span>
+                        <span class="product-hero-price-old">$197.00</span>
+                    </div>
+
+                    <p>Four Pillows. Endless Comfort. Better Sleep Starts Tonight.</p>
+
+                    <a href="#catalog" class="product-cta">Buy Now</a>
+                </div>
+
+                <div class="product-hero-media">
+                    <img src="ASSETS/PILLOW PRODUCT HERO IMAGE.png" alt="King size pillow set">
+                </div>
+            </section>
+
+            <section class="product-catalog" id="catalog">
+                <div class="product-toolbar">
+                    <div class="product-toolbar-left">
+                        <h2>FILTER BY</h2>
+                        <button type="button" class="clear-filters">Clear all</button>
+                    </div>
+
+                    <label class="product-sort">
+                        <span>SORT BY</span>
+                        <select id="productSort">
+                            <option value="newest">Newest</option>
+                            <option value="most-popular">Most Popular</option>
+                            <option value="price-low">Price: Low to High</option>
+                            <option value="price-high">Price: High to Low</option>
+                        </select>
+                    </label>
+                </div>
+                
+                <div class="product-catalog-layout"> 
+                    <!--Filters-->
+                    <aside class="product-filters">
+                        <label class="filter-option">
+                            <input type="checkbox" class="catalog-filter" value="down-feather">
+                            <span>Down Feather</span>
+                        </label>
+
+                        <label class="filter-option">
+                            <input type="checkbox" class="catalog-filter" value="memory-foam">
+                            <span>Memory Foam</span>
+                        </label>
+
+                        <label class="filter-option">
+                            <input type="checkbox" class="catalog-filter" value="king">
+                            <span>King</span>
+                        </label>
+
+                        <label class="filter-option">
+                            <input type="checkbox" class="catalog-filter" value="medium">
+                            <span>Medium</span>
+                        </label>
+                    </aside>
+
+                    <!--Product Grid-->
+                    <div class="product-grid" id="productGrid">
+                        
+                        <!--Memory Foam Pillow-->
+                        <article class="product-card" data-category="memory-foam-medium" data-price="56" data-order="3" data-name="Memory Foam Pillow">
+                            <div class="product-card-media">
+                                <img src="ASSETS/memory foam pillow.png">
+                            </div>
+                            <div class="product-card-meta">
+                                <div>
+                                    <h3>Memory Foam Pillow</h3>
+                                    <p class="product-card-price">$56.00</p>
+                                    <p class="product-card-rating">★★★★★</p>
+                                </div>
+
+                                <button class="product-card-cart" type="button" aria-label="Add Memory Foam Pillow to cart">
+                                    <img src="ASSETS/cart-svgrepo-com.svg">
+                                </button>
+                            </div>
+                        </article>
+
+                        <!--King Memory Foam Pillow-->
+                        <article class="product-card" data-category="memory-foam-king" data-price="58" data-order="4" data-name="King Memory Foam Pillow">
+                            <div class="product-card-media">
+                                <img src="ASSETS/king memory foam pillow.png">
+                            </div>
+                            <div class="product-card-meta">
+                                <div>
+                                    <h3>King Memory Foam Pillow</h3>
+                                    <p class="product-card-price">$58.00</p>
+                                    <p class="product-card-rating">★★★★★</p>
+                                </div>
+                                <button class="product-card-cart" type="button" aria-label="Add King Memory Foam Pillow to cart">
+                                    <img src="ASSETS/cart-svgrepo-com.svg">
+                                </button>
+                            </div>                           
+                        </article>
+
+                        <!--Luxury Down Pillow-->
+                        <article class="product-card" data-category="down-feather-medium" data-price="54" data-order="2" data-name="Luxury Down Pillow">
+                            <div class="product-card-media">
+                                <img src="ASSETS/medium downfeather.png">
+                            </div>
+
+                            <div class="product-card-meta">
+                                <div>
+                                    <h3>Luxury Down Pillow</h3>
+                                    <p class="product-card-price">$54.00</p>
+                                    <p class="product-card-rating">★★★★★</p>
+                                </div>
+                                <button class="product-card-cart" type="button" aria-label="Add Contour Luxe Pillow to cart">
+                                    <img src="ASSETS/cart-svgrepo-com.svg">
+                                </button>
+                            </div>
+                        </article>
+
+                        <!--Contour Luxe Pillow-->
+                        <article class="product-card" data-category="memory-foam-medium" data-price="49" data-order="1" data-name="Contour Luxe Pillow">
+                            <div class="product-card-media">
+                                <img src="ASSETS/contour luxe pillow.png">
+                            </div>
+
+                            <div class="product-card-meta">
+                                <div>
+                                    <h3>Luxury Down Pillow</h3>
+                                    <p class="product-card-price">$49.00</p>
+                                    <p class="product-card-rating">★★★★★</p>
+                                </div>
+                                <button class="product-card-cart" type="button" aria-label="Add Contour Luxe Pillow to cart">
+                                    <img src="ASSETS/cart-svgrepo-com.svg">
+                                </button>
+                            </div>
+                        </article>
+
+                        <!--King Set Pillow-->
+                        <article class="product-card" data-category="down-pillow-king" data-price="81" data-order="5" data-name="King Size Pillow Set">
+                            <div class="product-card-media">
+                                <img src="ASSETS/king set.png">
+                            </div>
+
+                            <div class="product-card-meta">
+                                <div>
+                                    <h3>King Size Pillow Set</h3>
+                                    <p class="product-card-price">$81.00</p>
+                                    <p class="product-card-rating">★★★★★</p>
+                                </div>
+                                <button class="product-card-cart" type="button" aria-label="Add King Size Pillow Set to cart">
+                                    <img src="ASSETS/cart-svgrepo-com.svg">
+                                </button>
+                            </div>
+                        </article>
+                    </div>
+                </div>
+            </section>
+        </main>
+    
+        <!--Footer-->
+        <footer class="site-footer">
+            <div class="footer-brand">
+                <img src="ASSETS/evopia new logo.svg" alt="Evopia" class="footer-logo">
+                <p class="footer-tagline">Designed for dreamers. Crafted for every night.</p>
+            </div>
+
+            <div class="footer-divider"></div>
+
+            <div class="footer-links">
+                <a href="#">Contact Us</a>
+                <a href="#">Shipping & Returns</a>
+                <a href="#">Warranty</a>
+                <a href="#">FAQ</a>
+            </div>
+
+            <div class="footer-socials">
+                <a href="#" class="social-link" aria-label="Instagram">
+                    <img src="ASSETS/default_instagram.svg" class="social-icon social-icon-default">
+                    <img src="ASSETS/hover_instagram.svg" class="social-icon social-icon-hover">
+                </a>
+
+                <a href="#" class="social-link" aria-label="Facebook">
+                    <img src="ASSETS/default_facebook.svg" class="social-icon social-icon-default">
+                    <img src="ASSETS/hover_facebook.svg" class="social-icon social-icon-hover">
+                </a>
+
+                <a href="#" class="social-link" aria-label="Pinterest">
+                    <img src="ASSETS/default_pinterest.svg" class="social-icon social-icon-default">
+                    <img src="ASSETS/hover_pinterest.svg" class="social-icon social-icon-hover">
+                </a>
+
+                <a href="#" class="social-link" aria-label="LinkedIn">
+                    <img src="ASSETS/default_linkedin.svg" class="social-icon social-icon-default">
+                    <img src="ASSETS/hover_linkedin.svg" class="social-icon social-icon-hover">
+                </a>
+                <a href="#" class="social-link" aria-label="YouTube">
+                    <img src="ASSETS/default_youtube.svg" class="social-icon social-icon-default">
+                    <img src="ASSETS/hover_youtube.svg" class="social-icon social-icon-hover">
+                </a>
+            </div>
+
+            <div class="footer-meta">
+                <div class="footer-policies">
+                    <a href="#">Terms & Conditions</a>
+                    <a href="#">Privacy Policy</a>
+                </div>
+            </div>
+            <p>Copyright © 2026 Evopia. All rights reserved. Site credit.</p>
+
+        </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

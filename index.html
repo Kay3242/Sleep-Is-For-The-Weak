@@ -3,9 +3,231 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <link rel="stylesheet" href="styles.css">
+
+    <!--Fonts-->
+
+    <!--Font: Playfair Display-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Amatic+SC:wght@400;700&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Lora:ital,wght@0,400..700;1,400..700&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
+    
+    <!--Font: Inter-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Amatic+SC:wght@400;700&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Lora:ital,wght@0,400..700;1,400..700&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
+    <title>Evopia</title>
 </head>
 <body>
+        <!--Navigation bar-->
+        <!--Logo-->
+        <header class="navbar">
+            <a href="index.html" class="logo" aria-label="Evopia home">
+                <img src="ASSETS/evopia new logo.svg" class="logo-vector">
+            </a>
+
+        <!--Search bar-->
+        <form class="search" role="search">
+            <input type="search" placeholder="Search product">
+            <button type="submit" aria-label="Search">
+                <span class="search-icon"></span>
+            </button>
+        </form>
+
+        <!--Navigation links-->
+        <nav class="nav-links" aria-label="Main navigation">
+            <a href="#">Shop</a>
+            <a href="#">Best Sellers</a>
+            <a href="#">About</a>
+            <a href="#">Contact Us</a>
+        </nav>
+
+        <!--Cart icon-->
+        <a href="#" class="cart" aria-label="Cart">
+            <img src="ASSETS/cart-svgrepo-com.svg" alt="cart" class="cart-icon">
+            <span class="cart-count">0</span>
+        </a>
+
+        </header>
+
+    <!--Hero section-->
+    <section class="hero">
+        <!--Floating Pillow-->
+        <img src="ASSETS/pillow_element.png" alt="pillow1" class="floating-pillow">
+
+        <!--Hero content-->
+        <div class="hero-content">
+            <h1>
+                <span>Designed</span>
+                <em>for</em>
+                <span>Dreamers</span>
+            </h1>
+
+            <a href="#" class="hero-button">Explore</a>
+        </div>
+    </section>
+
+    <!--Pillow Carousel-->
+    <section class="pillow-section">
+        <!--Previous product button-->
+        <button class="slider-arrow slider-arrow-left" id="prevPillow" aria-label="Previous product">
+            &#10094;
+        </button>
+
+        <!--Pillow product-->
+        <div class="pillow-visual">
+            <div class="pillow-circle"></div>
+        </div>
+
+        <!--Pillow information-->
+        <div class="pillow-info">
+            <h2 id="pillowTitle">Luxury Down Pillow</h2>
+            <p id="pillowDescription">
+                Wake up refreshed with plush duck feather and down pillows crafted for hotel-level comfort every night.
+            </p>
+            <a href="#" class="buy-button">Buy Now</a>
+        </div>
+
+        <!--Next Product Button-->
+        <button class="slider-arrow slider-arrow-right" id="nextPillow" aria-label="Next product">
+            &#10095;
+        </button>
+    </section>
+
+    <!--Popular Categories-->
+    <section class="categories-section">
+        <h2>Popular Categories</h2>
+
+        <div class="category-grid">
+            <a href="#" class="category-card">
+                <img src="ASSETS/BEDDING_THUMBNAIL.jpg" alt="Pillows">
+                <span>Pillows</span>
+            </a>
+
+            <a href="#" class="category-card">
+                <img src="ASSETS/MATTRESS_THUMBNAIL.jpg" alt="Mattresses">
+                <span>Mattresses</span>
+            </a>
+
+            <a href="#" class="category-card">
+                <img src="ASSETS/LED BED_THUMBNAIL.jpg" alt="LED Beds">
+                <span>LED Beds</span>
+            </a>
+
+            <a href="#" class="category-card">
+                <img src="ASSETS/BED BASE_THUMBNAIL.jpg" alt="Bed Frames">
+                <span>Bed Frames</span>
+            </a>
+        </div>
+    </section>
+
+    <!--Why Evopia-->
+    <section class="why-section">
+        <h2>Why Evopia?</h2>
+
+        <div class="why-grid">
+            <div class="why-card">
+                <div class="why-icon"><img src="ASSETS/moon-stars-svgrepo-com.svg" class="why-icon-image" alt="moon"></div>
+                <p>Comfort designed for every sleeper</p>
+            </div>
+
+            <div class="why-card">
+                <div class="why-icon"><img src="ASSETS/feather-alt-svgrepo-com.svg" class="why-icon-image" alt="feather"></div>
+                <p>Comfort designed for every sleeper</p>
+            </div>
+
+            <div class="why-card">
+                <div class="why-icon"><img src="ASSETS/diamond-svgrepo-com(1).svg" class="why-icon-image" alt="money"></div>
+                <p>Premium quality at affordable prices</p>
+            </div>
+
+            <div class="why-card">
+                <div class="why-icon"><img src="ASSETS/bed-svgrepo-com(1).svg" class="why-icon-image" alt="bed"></div>
+                <p>Transform your bedroom into a sanctuary</p>
+            </div>
+        </div>
+    </section>
+
+    <!--Sleep CTA-->
+    <section class="sleep-section">
+        <div class="sleep-card">
+            <div class="sleep-copy">
+                <h2>Sleep Well With Evopia</h2>
+                <p>Beds and mattresses for every sleeper, from soft to firm comfort.</p>
+                <a href="#" class="sleep-button">Buy Now</a>
+            </div>
+
+            <div class="sleep-image-wrap">
+                <img src="ASSETS/SLEEPING PERSON_THUMBNAIL.jpg" alt="Sleeping woman" class="sleep-image">
+            </div>
+        </div>
+    </section>
+
+    <!--Subscribe-->
+    <section class="subscribe-section">
+        <div class="subscribe-content">
+            <h2>Subscribe</h2>
+            <p>Sign up to get the latest on sales, new releases and more.</p>
+
+            <form class="subscribe-form">
+                <input type="email" placeholder="Enter email address" aria-label="Email address">
+                <button type="submit" class="subscribe-button">Sign Up</button>
+            </form>
+        </div>
+    </section>
     
+    <!--Footer-->
+    <footer class="site-footer">
+        <div class="footer-brand">
+            <img src="ASSETS/evopia new logo.svg" alt="Evopia" class="footer-logo">
+            <p class="footer-tagline">Designed for dreamers. Crafted for every night.</p>
+        </div>
+
+        <div class="footer-divider"></div>
+
+        <div class="footer-links">
+            <a href="#">Contact Us</a>
+            <a href="#">Shipping & Returns</a>
+            <a href="#">Warranty</a>
+            <a href="#">FAQ</a>
+        </div>
+
+        <div class="footer-socials">
+            <a href="#" class="social-link" aria-label="Instagram">
+                <img src="ASSETS/default_instagram.svg" class="social-icon social-icon-default">
+                <img src="ASSETS/hover_instagram.svg" class="social-icon social-icon-hover">
+            </a>
+
+            <a href="#" class="social-link" aria-label="Facebook">
+                <img src="ASSETS/default_facebook.svg" class="social-icon social-icon-default">
+                <img src="ASSETS/hover_facebook.svg" class="social-icon social-icon-hover">
+            </a>
+
+            <a href="#" class="social-link" aria-label="Pinterest">
+                <img src="ASSETS/default_pinterest.svg" class="social-icon social-icon-default">
+                <img src="ASSETS/hover_pinterest.svg" class="social-icon social-icon-hover">
+            </a>
+
+            <a href="#" class="social-link" aria-label="LinkedIn">
+                <img src="ASSETS/default_linkedin.svg" class="social-icon social-icon-default">
+                <img src="ASSETS/hover_linkedin.svg" class="social-icon social-icon-hover">
+            </a>
+            <a href="#" class="social-link" aria-label="YouTube">
+                <img src="ASSETS/default_youtube.svg" class="social-icon social-icon-default">
+                <img src="ASSETS/hover_youtube.svg" class="social-icon social-icon-hover">
+            </a>
+        </div>
+
+        <div class="footer-meta">
+            <div class="footer-policies">
+                <a href="#">Terms & Conditions</a>
+                <a href="#">Privacy Policy</a>
+            </div>
+        </div>
+        <p>Copyright © 2026 Evopia. All rights reserved. Site credit.</p>
+
+    </footer>
+
+    <script src="script.js"></script>
 </body>
 </html>
