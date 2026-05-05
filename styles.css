@@ -706,6 +706,8 @@ body {
     align-items: center;
     gap: 1rem;
     color: rgba(255, 255, 255, 0.6);
+    margin: 0;
+    font-size: 0.9rem
 }
 
 .footer-policies {
@@ -713,11 +715,6 @@ body {
     flex-wrap: wrap;
     justify-content: center;
     gap: 2rem;
-}
-
-.footer-meta {
-    margin: 0;
-    font-size: 0.9rem;
 }
 
 @media (max-width: 48rem) {
@@ -740,19 +737,22 @@ body {
 }
 
 .product-page {
-    padding: 2rem 0 6rem;
+    padding: 0 0 6rem;
     background: #fff;
 }
 
 .product-hero {
-    width: min (100%, 85rem);
-    margin: 0 auto;
-    padding: clamp(3rem, 6vw, 5rem);
+    width: 100%;
+    min-height: 42rem;
+    margin: calc(-1 * clamp(6rem, 8vw, 8rem)) auto 0;
+    padding: calc(clamp(6rem, 8vw, 8rem) + 5rem) clamp(3rem, 6vw, 6rem) 5rem;
     display: grid;
     grid-template-columns: 1.05fr 0.95fr;
     align-items: center;
     gap: clamp(2rem, 5vw, 4rem);
-    background: linear-gradient(90deg, #cfc6bc 0%, #d9d1c9 45%, #e9e1d7 100%);
+    background: 
+        url("ASSETS/PILLOW PRODUCT HERO IMAGE.png") center top / cover no-repeat;
+        overflow: hidden;
 }
 
 .product-hero-copy h1 {
@@ -802,6 +802,7 @@ body {
     text-decoration: none;
     text-transform: none;
     font-weight: 800;
+    text-transform: uppercase;
 }
 
 .product-hero-media {
@@ -878,3 +879,101 @@ body {
     gap: 0.9rem;
 }
 
+.filter-option {
+    display: flex;
+    align-items: center;
+    gap: 0.65rem;
+    font-size: 0.85rem;
+}
+
+.filter-option input {
+    width: 1.25rem;
+    aspect-ratio: 1;
+    margin: 0;
+    accent-color: #000;
+}
+
+.product-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: clamp(3rem, 6vw, 5rem) clamp(2rem, 5vw, 4rem);
+}
+
+.product-card {
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+    border-radius: 10%;
+}
+
+.product-card:hover {
+    transform: translateY(-0.35rem);
+    box-shadow: 0 1rem 2.5rem rgba(0, 0, 0, 0.12);
+}
+
+.product-card.is-hidden {
+    display: none;
+}
+
+.product-card-media {
+    aspect-ratio: 1.35 / 1;
+    display: grid;
+    place-items: center;
+}
+
+.product-card-media img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: block;
+}
+
+.product-card h3 {
+    margin: 0 0 0.25rem;
+    font-size: 0.8rem;
+    line-height: 1.2;
+    font-weight: 500;
+}
+
+.product-card-price {
+    margin: 0;
+    font-size: 1rem;
+    font-weight: 800;
+}
+
+.product-card-rating {
+    margin: 0.2rem 0 0;
+    color: #ffb000;
+    font-size: 0.85rem;
+    letter-spacing: 0.06rem;
+}
+
+.product-card-cart {
+    width: 2.25rem;
+    aspect-ratio: 1;
+    padding: 0;
+    display: flex;
+    place-items: center;
+    justify-content: center;
+    flex: 0 0 auto;
+    border: 0.125rem solid #111;
+    border-radius: 999rem;
+    background: #fff;
+    cursor: pointer;
+}
+
+.product-card-cart img {
+    width: 1.35rem;
+    height: 1.35rem;
+}
+
+.product-card-meta {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-top: 0.75rem;
+    padding: 0 1rem 1rem;
+}
+
+.product-card-meta > div {
+    min-width: 0;
+}
