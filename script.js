@@ -219,3 +219,22 @@ addCartButtons.forEach((button) => {
         cartCount.textContent = cartItems;
     });
 });
+
+const qtyValue = document.querySelector(".detail-qty-value");
+const qtyButtons = document.querySelectorAll(".detail-qty-btn");
+
+let quantity = 1;
+
+qtyButtons.forEach((button) => {
+    button.addEventListener("click", () => {
+        if (button.textContent.includes("+")) {
+            quantity += 1;
+        } else {
+            quantity = Math.max(1, quantity - 1);
+        }
+
+        if (qtyValue) {
+            qtyValue.textContent = quantity;
+        }
+    });
+});
