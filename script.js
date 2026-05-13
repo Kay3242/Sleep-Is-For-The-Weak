@@ -179,7 +179,7 @@ function updateProducts() {
     productCards.forEach((card) => {
         const category = card.dataset.category;
 
-        const shouldShow = 
+        const shouldShow =
             activeFilters.length === 0 ||
             activeFilters.some((filter) => category.includes(filter));
 
@@ -194,7 +194,7 @@ function updateProducts() {
         }
 
         if (sortValue === "price-high") {
-            return Number (b.dataset.price) - Number(a.dataset.price);
+            return Number(b.dataset.price) - Number(a.dataset.price);
         }
 
         if (sortValue === "most-popular") {
@@ -204,7 +204,10 @@ function updateProducts() {
         return Number(a.dataset.order) - Number(b.dataset.order);
     });
 
-    sortedCards.forEach((card) => productGrid.appendChild(card));
+    const visibleCards = sortedCards.filter((card) => !card.classList.contains("is-hidden"));
+    const hiddenCards = sortedCards.filter((card) => card.classList.contains("is-hidden"));
+
+    [...visibleCards, ...hiddenCards].forEach((card) => productGrid.appendChild(card));
 }
 
 filters.forEach((filter) => {
@@ -214,10 +217,55 @@ filters.forEach((filter) => {
 sortSelect?.addEventListener("change", updateProducts);
 
 addCartButtons.forEach((button) => {
-    button.addEventListener("click", () => {
-        cartItems += 1;
-        cartCount.textContent = cartItems;
+    button.addEventListener("click", (event) => {
+        event.preventDefault();
+
+        const productCard = button.closest(".product-card");
+        const productName = productCard?.dataset.name;
+
+        if (!productName) return;
+
+        addItemToCart(productName, 1);
     });
+});
+
+updateCartBadge();
+renderCartPage();
+
+document.addEventListener("click", (event) => {
+    const increaseButton = event.target.closest("[data-cart-increase]");
+    const decreaseButton = event.target.closest("[data-cart-decrease]");
+    const removeButton = event.target.closest("[data-cart-remove]");
+
+    if (!increaseButton && !decreaseButton && !removeButton) return;
+
+    const cart = getCart();
+
+    if (increaseButton) {
+        const name = increaseButton.dataset.cartIncrease;
+        if (cart[name]) {
+            cart[name].quantity += 1;
+        }
+    }
+
+    if (decreaseButton) {
+        const name = decreaseButton.dataset.cartDecrease;
+        if (cart[name]) {
+            cart[name].quantity = Math.max(0, cart[name].quantity - 1);
+            if (cart[name].quantity === 0) {
+                delete cart[name];
+            }
+        }
+    }
+
+    if (removeButton) {
+        const name = removeButton.dataset.cartRemove;
+        delete cart[name];
+    }
+
+    saveCart(cart);
+    updateCartBadge();
+    renderCartPage();
 });
 
 const qtyValue = document.querySelector(".detail-qty-value");
@@ -238,3 +286,121 @@ qtyButtons.forEach((button) => {
         }
     });
 });
+
+const CART_STORAGE_KEY = "evopia-cart";
+
+const productCatalog = {
+    "Memory Foam Pillow": {
+        name: "Memory Foam Pillow",
+        price: 56,
+        image: "ASSETS/memory foam pillow.png"
+    },
+    "King Memory Foam Pillow": {
+        name: "King Memory Foam Pillow",
+        price: 58,
+        image: "ASSETS/king memory foam pillow.png"
+    },
+    "Luxury Down Pillow": {
+        name: "Luxury Down Pillow",
+        price: 54,
+        image: "ASSETS/medium downfeather.png"
+    },
+    "Contour Luxe Pillow": {
+        name: "Contour Luxe Pillow",
+        price: 49,
+        image: "ASSETS/contour luxe pillow.png"
+    },
+    "King Size Pillow Set": {
+        name: "King Size Pillow Set",
+        price: 81,
+        image: "ASSETS/king set.png"
+    }
+};
+
+function getCart() {
+    return JSON.parse(localStorage.getItem(CART_STORAGE_KEY) || "{}");
+}
+
+function saveCart(cart) {
+    localStorage.setItem(CART_STORAGE_KEY, JSON.stringify(cart));
+}
+
+function getCartCount() {
+    const cart = getCart();
+
+    return Object.values(cart).reduce((total, item) => total + item.quantity, 0);
+}
+
+function updateCartBadge() {
+    if (!cartCount) return;
+    cartCount.textContent = getCartCount();
+}
+
+function addItemToCart(productName, quantity = 1) {
+    const product = productCatalog[productName];
+    if (!product) return;
+
+    const cart = getCart();
+    const currentQuantity = cart[productName]?.quantity || 0;
+
+    cart[productName] = {
+        ...product,
+        quantity: currentQuantity + quantity
+    };
+
+    saveCart(cart);
+    updateCartBadge();
+}
+
+function renderCartPage() {
+    const cartList = document.querySelector("[data-cart-items]");
+    const emptyState = document.querySelector("[data-cart-empty]");
+    const subtotalValue = document.querySelector("[data-cart-subtotal]");
+    const totalValue = document.querySelector("[data-cart-total]");
+
+    if (!cartList) return;
+
+    const cart = getCart();
+    const items = Object.values(cart).filter((item) => item.quantity > 0);
+
+    cartList.innerHTML = "";
+
+    if (items.length === 0) {
+        emptyState?.removeAttribute("hidden");
+        if (subtotalValue) subtotalValue.textContent = "$0";
+        if (totalValue) totalValue.textContent = "$0";
+        return;
+    }
+
+    emptyState?.setAttribute("hidden", "");
+    let subtotal = 0;
+
+    items.forEach((item) => {
+        const row = document.createElement("article");
+        const itemSubtotal = item.price * item.quantity;
+        subtotal += itemSubtotal;
+
+        row.className = "cart-item";
+        row.innerHTML = `
+            <div class="cart-item-product">
+                <img src="${item.image}" alt="${item.name}" class="cart-item-image">
+                <p class="cart-item-name">${item.name}</p>
+            </div>
+
+            <div class="cart-item-quantity">
+                <button type="button" class="cart-qty-btn" data-cart-decrease="${item.name}">-</button>
+                <span>${item.quantity}</span>
+                <button type="button" class="cart-qty-btn" data-cart-increase="${item.name}">+</button>
+            </div>
+
+            <p class="cart-item-subtotal">$${itemSubtotal}</p>
+
+            <button type="button" class="cart-item-remove" data-cart-remove="${item.name}">Delete</button>
+        `;
+
+        cartList.appendChild(row);
+    });
+
+    if (subtotalValue) subtotalValue.textContent = `$${subtotal}`;
+    if (totalValue) totalValue.textContent = `$${subtotal}`;
+}
