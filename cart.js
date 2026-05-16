@@ -52,6 +52,10 @@ function showCartToast(message) {
     toast.textContent = message;
     toast.classList.add("is-visible");
 
+    requestAnimationFrame(() => {
+        toast.classList.add("is-visible");
+    });
+
     clearTimeout(cartToastTimeout);
     cartToastTimeout = setTimeout(() => {
         toast.classList.remove("is-visible");
