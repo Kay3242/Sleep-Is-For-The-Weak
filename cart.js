@@ -180,11 +180,13 @@ function renderCartPage() {
                 <button type="button" class="cart-qty-btn" data-action="increase" data-product-id="${item.id}">+</button>
             </div>
 
-            <p>${formatPrice(itemSubtotal)}</p>
+            <p class="cart-item-subtotal">${formatPrice(itemSubtotal)}</p>
 
-            <button type="button" class="cart-item-remove" data-product-id="${item.id}" aria-label="Remove ${item.name}">
-                🗑
-            </button>
+            <div class="cart-item-action">
+                <button type="button" class="cart-item-remove" data-product-id="${item.id}" aria-label="Remove ${item.name}">
+                    Remove
+                </button>
+            </div>
         `;
 
         cartItemsContainer.appendChild(row);

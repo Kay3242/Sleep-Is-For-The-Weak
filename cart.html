@@ -70,10 +70,37 @@
                 </section>
 
                 <aside class="cart-summary">
-                    <h2>Order Summary</h2>
-                    <p>Sub Total <span data-cart-subtotal>$0</span></p>
-                    <p>Total <span data-cart-total>$0</span></p>
-                </aside>
+                    <h2 id="cart-summary-title">Order Summary</h2>
+                    
+                    <form class="cart-summary-coupon">
+                        <label for="coupon-code" class="sr-only">Coupon code</label>
+                        <input id="coupon-code" type="text" placeholder="Enter Coupon Code">
+                        <button type="button">Apply</button>
+                    </form>
+
+                    <ul class="cart-summary-lines">
+                        <li class="cart-summary-row">
+                            <span>Sub Total</span>
+                            <strong data-cart-subtotal>$0.00</strong>
+                        </li>
+
+                        <li class="cart-summary-row">
+                            <span>Discount</span>
+                            <strong data-cart-discount>$0.00</strong>
+                        </li>
+
+                        <li class="cart-summary-row">
+                            <span>Delivery Fee</span>
+                            <strong data-cart-delivery>$20.00</strong>
+                        </li>
+
+                        <li class="cart-summary-row cart-summary-total">
+                            <span>Total</span>
+                            <strong data-cart-total>$0.00</strong>
+                        </li>
+                    </ul>
+
+                    <button type="button" class="cart-checkout-button">Checkout Now</button>
             </section>
         </main>
 
