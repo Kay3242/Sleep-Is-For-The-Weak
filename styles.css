@@ -1521,11 +1521,27 @@ body {
     cursor: pointer;
 }
 
-.cart-summary {
-    border: 1px solid #ccc;
-    border-radius: 1rem;
-    padding: 1.5rem;
-    height: fit-content;
+.cart-toast {
+    position: fixed;
+    right: 1.5rem;
+    bottom: 1.5rem;
+    z-index: 2000;
+    padding: 0.9rem 1.2rem;
+    border-radius: 999rem;
+    background: #111;
+    color: #fff;
+    font-size: 0.95rem;
+    font-weight: 600;
+    box-shadow: 0 0 0.75rem 2rem rgba(0, 0, 0, 0.18);
+    opacity: 0;
+    transform: translateY(0.75rem);
+    pointer-events: none;
+    transition: opacity 0.25s ease, transform 0.25s ease;
+}
+
+.cart-toast.is-visible {
+    opacity: 1;
+    transform: translateY(0);
 }
 
 @media (max-width: 62rem) {
@@ -1548,6 +1564,16 @@ body {
 @media (max-width: 62rem) {
     .detail-reviews-layout {
         grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 48rem) {
+    .cart-toast {
+        left: 1rem;
+        right: 1rem;
+        bottom: 1rem;
+        text-align: center;
+        border-radius: 1rem;
     }
 }
 
