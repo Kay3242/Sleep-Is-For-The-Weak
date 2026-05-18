@@ -252,7 +252,7 @@ function setCouponFeedback(message, type) {
 
     form.addEventListener("submit", (event) => {
         event.preventDefault();
-        appliedCoupon();
+        applyCoupon();
     });
 }
 
@@ -342,6 +342,14 @@ function renderCartPage() {
         button.addEventListener("click", () => {
             removeItem(button.dataset.productId);
         });
+    });
+}
+
+const checkoutButton = document.querySelector(".cart-page-checkout-button");
+
+if (checkoutButton) {
+    checkoutButton.addEventListener("click", () => {
+        window.location.href = "shipping.html";
     });
 }
 
