@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+
+    <!--Fonts-->
+
+    <!--Font: Playfair Display-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Amatic+SC:wght@400;700&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Lora:ital,wght@0,400..700;1,400..700&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
+    
+    <!--Font: Inter-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Amatic+SC:wght@400;700&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Lora:ital,wght@0,400..700;1,400..700&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
+    <title>Evopia</title>
+</head>
+<body>
+        <!--Navigation bar-->
+        <!--Logo-->
+        <header class="navbar">
+            <a href="index.html" class="logo" aria-label="Evopia home">
+                <img src="ASSETS/evopia new logo.svg" class="logo-vector">
+            </a>
+
+        <!--Search bar-->
+        <form class="search" role="search" autocomplete="off">
+            <input type="search" id="siteSearch" placeholder="Search product">
+            <button type="submit" aria-label="Search">
+                <span class="search-icon"></span>
+            </button>
+
+            <div class="search-suggestions" id="searchSuggestions"></div>
+        </form>
+
+        <!--Navigation links-->
+        <nav class="nav-links" aria-label="Main navigation">
+            <a href="product.html">Shop</a>
+            <a href="#">Best Sellers</a>
+            <a href="#">About</a>
+            <a href="#">Contact Us</a>
+        </nav>
+
+        <!--Cart icon-->
+        <a href="cart.html" class="cart" aria-label="Cart">
+            <img src="ASSETS/cart-svgrepo-com.svg" alt="cart" class="cart-icon">
+            <span class="cart-count">0</span>
+        </a>
+        </header>
+
+        <main class="detail-page">
+            <section class="detail-product">
+                <figure class="detail-product-media">
+                    <img src="ASSETS/medium downfeather.png" alt="King Memory Foam Pillow">
+                </figure>
+
+                <article class="detail-product-info">
+                    <header class="detail-product-header">
+                        <h1>Luxury Down Pillow</h1>
+                        <p class="detail-stock">In Stock</p>
+
+                        <p class="detail-rating-row">
+                            <span class="detail-rating-score">4.5</span>
+                            <span class="detail-rating-stars">★★★★★</span>
+                            <span class="detail-rating-count">(10)</span>
+                        </p>
+                    </header>
+
+                    <hr class="detail-divider">
+
+                    <section class="detail-pricing" aria-label="Pricing">
+                        <p class="detail-price">$54.00</p>
+                        <p class="detail-old-price">Was: $129</p>
+                    </section>
+
+                    <hr class="detail-divider">
+
+                    <section class="detail-specs" aria-labelledby="detail-specs-title">
+                        <h2 id="detail-specs-title" class="sr-only">Product details</h2>
+
+                        <dl class="detail-spec-list">
+                            <dt>Brand</dt>
+                            <dd>Giselle</dd>
+
+                            <dt>Material</dt>
+                            <dd>100% cotton casing (233TC down-proof cotton Japara)</dd>
+
+                            <dt>Special feature</dt>
+                            <dd>
+                                <ul>
+                                    <li>Dimension: 73cm x 48cm</li>
+                                    <li>Filling: 95% white duck feather, 5% white duck down</li>
+                                    <li>Pack type: Twin pack</li>
+                                </ul>
+                            </dd>
+                        </dl>
+                    </section>
+
+                    <section class="detail-about" aria-labelledby="detail-about-title">
+                        <h2 id="detail-about-title">About this item</h2>
+                        <ul>
+                            <li>Filled with 1kg of duck feather and down for plush comfort</li>
+                            <li>Premium white duck feather and white duck down blend</li>
+                            <li>Made with 233 thread count down-proof cotton Japara casing with piped edges for durability</li>
+                            <li>Hypo-allergy free and made without harmful substances</li>
+                            <li>Ethically sourced non-live plucked feathers and down</li>
+                            <li>Vacuum packed for safe delivery and easy storage</li>
+                            <li>Includes 2 pillows and 1 storage bag</li>
+                        </ul>
+                    </section>
+
+                    <section class="detail-actions" aria-label="Purchase options">
+                        <p class="detail-qty" aria-label="Quantity selector">
+                            <button type="button" class="detail-qty-btn">-</button>
+                            <span class="detail-qty-value">1</span>
+                            <button type="button" class="detail-qty-btn">+</button>
+                        </p>
+
+                        <button type="button" class="detail-cart-button" data-product-id="memory-foam-pillow" data-name="Memory Foam Pillow" data-price="56" data-image="ASSETS/memory foam pillow.png">Add to Cart</button>
+                    </section>
+                </article>
+            </section>
+
+            <section class="detail-related" aria-labelledby="detail-related-title">
+                <hr class="detail-divider">
+                <h2 id="detail-related-title">You may also like</h2>
+                <p>Based on products bought together</p>
+
+                <ul class="detail-related-list">
+                    <li class="detail-related-item">
+                        <!--King Set Pillow-->
+                        <a href="kingSet.html" class="product-card" data-product-id="king-size-pillow-set" data-category="down-pillow-king" data-price="81" data-order="5" data-name="King Size Pillow Set" data-image="ASSETS/king set.png">
+                            <article>
+                                <div class="product-card-media">
+                                    <img src="ASSETS/king set.png">
+                                </div>
+
+                                <div class="product-card-meta">
+                                    <div>
+                                        <h3>King Size Pillow Set</h3>
+                                        <p class="product-card-price">$81.00</p>
+                                        <p class="product-card-rating">★★★★★</p>
+                                    </div>
+                                    <button class="product-card-cart" type="button" aria-label="Add King Size Pillow Set to cart">
+                                        <img src="ASSETS/add-to-cart-svgrepo-com.svg" alt="Add to cart" class="cart-icon-default">
+                                        <img src="ASSETS/add to cart hover state.svg" alt="Add to cart" class="cart-icon-hover">>
+                                    </button>
+                                </div>
+                            </article>
+                        </a>
+                    </li>
+                </ul>
+            </section>
+            
+            <!--Reviews-->
+            <section class="detail-reviews" aria-labelledby="detail-reviews-title">
+                <hr class="detail-divider">
+                
+                <div class="detail-reviews-layout">
+                    <aside class="detail-reviews-summary">
+                        <h2 id="detail-reviews-title">Customer reviews</h2>
+
+                        <p class="detail-reviews-score">
+                            <span class="detail-reviews-stars">★★★★☆</span>
+                            <span>4.5 out of 5</span>
+                        </p>
+
+                        <p class="detail-reviews-count">10 ratings</p>
+
+                        <dl class="detail-reviews-breakdown">
+                            
+                            <!--Detail review diagram-->
+                            <div class="detail-reviews-row">
+                                <dt>5 star</dt>
+                                <dd>
+                                    <span class="detail-reviews-bar">
+                                        <span class="detail-reviews-fill" style="width: 80%;"></span>
+                                    </span>
+                                    <span>80%</span>
+                                </dd>
+                            </div>
+
+                            <div class="detail-reviews-row">
+                                <dt>4 star</dt>
+                                <dd>
+                                    <span class="detail-reviews-bar">
+                                        <span class="detail-reviews-fill" style="width: 10%;"></span>
+                                    </span>
+                                    <span>10%</span>
+                                </dd>
+                            </div>
+
+                            <div class="detail-reviews-row">
+                                <dt>3 star</dt>
+                                <dd>
+                                    <span class="detail-reviews-bar">
+                                        <span class="detail-reviews-fill" style="width: 0%"></span>
+                                    </span>
+                                    <span>0%</span>
+                                </dd>
+                            </div>
+
+                            <div class="detail-reviews-row">
+                                <dt>2 star</dt>
+                                <dd>
+                                    <span class="detail-reviews-bar">
+                                        <span class="detail-reviews-fill" style="width: 0%"></span>
+                                    </span>
+                                    <span>0%</span>
+                                </dd>
+                            </div>
+
+                            <div class="detail-reviews-row">
+                                <dt>1 star</dt>
+                                <dd>
+                                    <span class="detail-reviews-bar">
+                                            <span class="detail-reviews-fill" style="width:10%"></span>
+                                        </span>
+                                    </span>
+                                    <span>10%</span>
+                                </dd>
+                            </div>
+                        </dl>
+                    </aside>
+
+                    <section class="detail-top-reviews" arialabelledby="detail-top-reviews-title">
+                        <h3 id="detail-top-reviews-title">Top reviews</h3>
+
+                    <article class="detail-review-card">
+                        <header class="detail-review-header">
+                            <span class="detail-review-avatar" aria-hidden="true"></span>
+                            <p class="detail-review-user">User 01</p>
+                        </header>
+
+                        <p class="detail-reviews-stars">★★★★★</p>
+
+                        <p class="detail-review-copy">
+                            I recently purchased this pillow and have been genuinely impressed with the comfort and quality. The material feels soft yet supportive, making it perfect for both side and back sleeping. After using it for a few nights, I noticed a significant improvement in my sleep quality and woke up with less neck stiffness. The fabric also feels breathable and premium, which adds to the overall experience. Definitely a great addition to my bedroom setup, and I would highly recommend it to anyone looking for a comfortable and stylish sleep upgrade.
+                        </p>
+                    </article>
+
+                    <article class="detail-review-card">
+                        <header class="detail-review-header">
+                            <span class="detail-review-avatar" aria-hidden="true"></span>
+                            <p class="detail-review-user">User 01</p>
+                        </header>
+
+                        <p class="detail-reviews-stars">★★★★★</p>
+
+                        <p class="detail-review-copy">
+                            I recently purchased this pillow and have been genuinely impressed with the comfort and quality. The material feels soft yet supportive, making it perfect for both side and back sleeping. After using it for a few nights, I noticed a significant improvement in my sleep quality and woke up with less neck stiffness. The fabric also feels breathable and premium, which adds to the overall experience. Definitely a great addition to my bedroom setup, and I would highly recommend it to anyone looking for a comfortable and stylish sleep upgrade.
+                        </p>
+                    </article>
+
+                    <article class="detail-review-card">
+                        <header class="detail-review-header">
+                            <span class="detail-review-avatar" aria-hidden="true"></span>
+                            <p class="detail-review-user">User 01</p>
+                        </header>
+
+                        <p class="detail-reviews-stars">★★★★★</p>
+
+                        <p class="detail-review-copy">
+                            I recently purchased this pillow and have been genuinely impressed with the comfort and quality. The material feels soft yet supportive, making it perfect for both side and back sleeping. After using it for a few nights, I noticed a significant improvement in my sleep quality and woke up with less neck stiffness. The fabric also feels breathable and premium, which adds to the overall experience. Definitely a great addition to my bedroom setup, and I would highly recommend it to anyone looking for a comfortable and stylish sleep upgrade.
+                        </p>
+                    </article>
+
+                    <a href="#" class="detail-reviews-link"></a>
+                    </section>
+                </div>
+            </section>
+        </main>
+
+            <!--Footer-->
+    <footer class="site-footer">
+        <div class="footer-brand">
+            <img src="ASSETS/evopia new logo.svg" alt="Evopia" class="footer-logo">
+            <p class="footer-tagline">Designed for dreamers. Crafted for every night.</p>
+        </div>
+
+        <div class="footer-divider"></div>
+
+        <div class="footer-links">
+            <a href="#">Contact Us</a>
+            <a href="#">Shipping & Returns</a>
+            <a href="#">Warranty</a>
+            <a href="#">FAQ</a>
+        </div>
+
+        <div class="footer-socials">
+            <a href="#" class="social-link" aria-label="Instagram">
+                <img src="ASSETS/default_instagram.svg" class="social-icon social-icon-default">
+                <img src="ASSETS/hover_instagram.svg" class="social-icon social-icon-hover">
+            </a>
+
+            <a href="#" class="social-link" aria-label="Facebook">
+                <img src="ASSETS/default_facebook.svg" class="social-icon social-icon-default">
+                <img src="ASSETS/hover_facebook.svg" class="social-icon social-icon-hover">
+            </a>
+
+            <a href="#" class="social-link" aria-label="Pinterest">
+                <img src="ASSETS/default_pinterest.svg" class="social-icon social-icon-default">
+                <img src="ASSETS/hover_pinterest.svg" class="social-icon social-icon-hover">
+            </a>
+
+            <a href="#" class="social-link" aria-label="LinkedIn">
+                <img src="ASSETS/default_linkedin.svg" class="social-icon social-icon-default">
+                <img src="ASSETS/hover_linkedin.svg" class="social-icon social-icon-hover">
+            </a>
+            <a href="#" class="social-link" aria-label="YouTube">
+                <img src="ASSETS/default_youtube.svg" class="social-icon social-icon-default">
+                <img src="ASSETS/hover_youtube.svg" class="social-icon social-icon-hover">
+            </a>
+        </div>
+
+        <div class="footer-meta">
+            <div class="footer-policies">
+                <a href="#">Terms & Conditions</a>
+                <a href="#">Privacy Policy</a>
+            </div>
+        </div>
+        <p>Copyright © 2026 Evopia. All rights reserved. Site credit.</p>
+
+    </footer>
+
+    <script src="cart.js"></script>
+    <script src="search.js"></script>
+</body>
+</html>
