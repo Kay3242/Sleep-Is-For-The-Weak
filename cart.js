@@ -1,4 +1,8 @@
 const CART_STORAGE_KEY = "evopia-cart";
+const COUPON_STORAGE_KEY = "evopia-coupon";
+const VALID_COUPON_CODE = "EVOPIAGIFT"
+const COUPON_DISCOUNT_AMOUNT = 10;
+const DELIVERY_FEE = 20;
 
 function getCart() {
     const savedCart = localStorage.getItem(CART_STORAGE_KEY);
@@ -173,12 +177,93 @@ function bindDetailPageCartButton() {
     });
 }
 
+//coupon system
+function getAppliedCoupon() {
+    return localStorage.getItem(COUPON_STORAGE_KEY) || "";
+}
+
+function saveAppliedCoupon(code) {
+    if (code) {
+        localStorage.setItem(COUPON_STORAGE_KEY, code);
+    } else {
+        localStorage.removeItem(COUPON_STORAGE_KEY);
+    }
+}
+
+function getDiscountAmount(subtotal) {
+    const appliedCoupon = getAppliedCoupon();
+
+    if (appliedCoupon === VALID_COUPON_CODE && subtotal > 0) {
+        return COUPON_DISCOUNT_AMOUNT;
+    }
+
+    return 0;
+}
+
+function setCouponFeedback(message, type) {
+    const feedback = document.querySelector("[data-coupon-feedback]")
+    const input = document.querySelector("#coupon-code")
+
+    if (!feedback || !input) {
+        return;
+    }
+
+    feedback.textContent = message;
+    feedback.classList.remove("is-success", "is-error");
+    input.classList.remove("is-success", "is-error");
+
+    if (type) {
+        feedback.classList.add(`is-${type}`);
+        input.classList.add(`is-${type}`);
+    }
+}
+
+    function bindCouponForm() {
+        const form = document.querySelector(".cart-summary-coupon");
+        const input = document.querySelector("#coupon-code");
+        const button = document.querySelector("#apply-coupon-button");
+
+        if (!form || !input || !button) {
+            return;
+        }
+
+        const appliedCoupon = getAppliedCoupon();
+
+        if (appliedCoupon) {
+            input.value = appliedCoupon;
+            setCouponFeedback("Coupon applied: $10 discount", "success");
+        }
+
+    function applyCoupon() {
+        const enteredCode = input.value.trim().toUpperCase();
+
+        if (enteredCode === VALID_COUPON_CODE) {
+            saveAppliedCoupon(enteredCode);
+            setCouponFeedback("Coupon applied: $10 discount", "success");
+        } else {
+            saveAppliedCoupon("");
+            setCouponFeedback("Invalid coupon code", "error");
+        }
+
+        renderCartPage();
+    }
+
+    button.addEventListener("click", applyCoupon);
+
+    form.addEventListener("submit", (event) => {
+        event.preventDefault();
+        appliedCoupon();
+    });
+}
+
 //item display in cart page when item is added to cart
 function renderCartPage() {
     const cartItemsContainer = document.querySelector("[data-cart-items]");
     const emptyState = document.querySelector("[data-cart-empty]");
     const subtotalElement = document.querySelector("[data-cart-subtotal]");
     const totalElement = document.querySelector("[data-cart-total]");
+    const discountElement = document.querySelector("[data-cart-discount]");
+    const deliveryElement = document.querySelector("[data-cart-delivery]");
 
     if (!cartItemsContainer || !emptyState || !subtotalElement || !totalElement) {
         return;
@@ -227,8 +312,13 @@ function renderCartPage() {
         cartItemsContainer.appendChild(row);
     });
 
+    const discount = getDiscountAmount(subtotal);
+    const total = Math.max(0, subtotal - discount + DELIVERY_FEE);
+
     subtotalElement.textContent = formatPrice(subtotal);
-    totalElement.textContent = formatPrice(subtotal);
+    discountElement.textContent = `-${formatPrice(discount)}`;
+    deliveryElement.textContent = formatPrice(DELIVERY_FEE);
+    totalElement.textContent = formatPrice(total);
 
     cartItemsContainer.querySelectorAll(".cart-qty-btn").forEach((button) => {
         button.addEventListener("click", () => {
@@ -258,4 +348,5 @@ function renderCartPage() {
 updateCartBadge();
 bindProductGridCartButton();
 bindDetailPageCartButton();
+bindCouponForm();
 renderCartPage();
