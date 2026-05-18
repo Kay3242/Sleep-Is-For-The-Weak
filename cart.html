@@ -27,11 +27,13 @@
             </a>
 
         <!--Search bar-->
-        <form class="search" role="search">
-            <input type="search" placeholder="Search product">
+        <form class="search" role="search" autocomplete="off">
+            <input type="search" id="siteSearch" placeholder="Search product">
             <button type="submit" aria-label="Search">
                 <span class="search-icon"></span>
             </button>
+
+            <div class="search-suggestions" id="searchSuggestions"></div>
         </form>
 
         <!--Navigation links-->
@@ -157,5 +159,6 @@
     </footer>
 
     <script src="cart.js"></script>
+    <script src="search.js"></script>
 </body>
 </html>
