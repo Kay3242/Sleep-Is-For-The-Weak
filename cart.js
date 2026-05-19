@@ -346,11 +346,31 @@ function renderCartPage() {
     });
 }
 
-//navigation function - cart to shipping page
-const cartCheckoutButton = document.querySelector(".cart-page-checkout-button");
+//navigation function - cart to shipping page if there are items in the cart
 
-if (cartCheckoutButton) {
+function setupCartCheckout() {
+    const cartCheckoutButton = document.querySelector("#cartCheckoutButton");
+    const cartFeedback = document.querySelector("#cartCheckoutFeedback");
+
+    if (!cartCheckoutButton) {
+        return;
+    }
+
     cartCheckoutButton.addEventListener("click", () => {
+        const cart = getCart();
+        const items = Object.values(cart).filter((item) => item.quantity > 0);
+
+        if (items.length === 0) {
+            if (cartFeedback) {
+                cartFeedback.textContent = "Please add an item to cart before continuing.";
+            }
+            return;
+        }
+
+        if (cartFeedback) {
+            cartFeedback.textContent = "";
+        }
+
         window.location.href = "shipping.html";
     });
 }
@@ -517,5 +537,6 @@ bindProductGridCartButton();
 bindDetailPageCartButton();
 bindCouponForm();
 renderCartPage();
+setupCartCheckout();
 setupShippingCheckout();
 setupPaymentCheckout();
