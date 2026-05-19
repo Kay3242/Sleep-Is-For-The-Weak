@@ -1839,6 +1839,24 @@ body {
     padding: 4rem 2rem 6rem;
 }
 
+.form-feedback {
+    margin: 0 0 1rem;
+    min-height: 1.25rem;
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: #d71920;
+}
+
+.shipping-form input.is-invalid,
+.shipping-form select.is-invalid {
+    border-color: #d71920;
+}
+
+.shipping-form input:invalid,
+.shipping-form select:invalid {
+    box-shadow: none;
+}
+
 .payment-layout {
     display: grid;
     grid-template-columns: minmax(0, 1.15fr) minmax(19rem, 23rem);
@@ -1913,6 +1931,10 @@ body {
 
 .payment-summary {
     margin-top: 3rem;
+}
+
+.payment-form input.is-invalid {
+    border: 0.125rem solid #d71920 !important;
 }
 
 .order-success-dialog {

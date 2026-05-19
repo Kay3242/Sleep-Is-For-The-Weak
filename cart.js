@@ -360,17 +360,70 @@ if (cartCheckoutButton) {
 function setupShippingCheckout() {
     const shippingForm = document.querySelector("#shippingForm");
     const shippingCheckoutButton = document.querySelector("#shippingCheckoutButton");
+    const shippingFeedback = document.querySelector("#shippingFormFeedback");
 
     if (!shippingForm || !shippingCheckoutButton) {
         return;
     }
 
+    const fields = shippingForm.querySelectorAll("input, select");
+
+    function clearInvalidState() {
+        fields.forEach((field) => {
+            field.classList.remove("is-invalid");
+        });
+
+        if (shippingFeedback) {
+            shippingFeedback.textContent = "";
+        }
+    }
+
+    function validateShippingForm() {
+        let hasErrors = false;
+
+        fields.forEach((field) => {
+            const value = field.value.trim();
+
+            if (!value || !field.checkValidity()) {
+                field.classList.add("is-invalid");
+                hasErrors = true;
+            } else {
+                field.classList.remove("is-invalid");
+            }
+        });
+
+        if (shippingFeedback) {
+            shippingFeedback.textContent = hasErrors
+            ? "Please fill in all required shipping details before continuing."
+            : "";
+        }
+
+        return !hasErrors;
+    }
+
+    fields.forEach((field) => {
+        field.addEventListener("input", () => {
+            if (field.value.trim() && field.checkValidity()) {
+                field.classList.remove("is-invalid");
+            }
+        });
+
+        field.addEventListener("change", () => {
+            if (field.value.trim() && field.checkValidity()) {
+                field.classList.remove("is-invalid");
+            }
+        });
+    });
+
     shippingCheckoutButton.addEventListener("click", () => {
-        if (!shippingForm.reportValidity()) {
+        clearInvalidState();
+
+        const isValid = validateShippingForm();
+
+        if (!isValid) {
             return;
         }
 
-        localStorage.setItem(SHIPPING_COMPLETE_KEY, "true");
         window.location.href = "payment.html";
     });
 }
@@ -380,39 +433,83 @@ function setupShippingCheckout() {
 function setupPaymentCheckout() {
     const paymentForm = document.querySelector("#paymentForm");
     const paymentCheckoutButton = document.querySelector("#paymentCheckoutButton");
+    const paymentFeedback = document.querySelector("#paymentFormFeedback");
     const successDialog = document.querySelector("#orderSuccessDialog");
     const successCloseButton = document.querySelector("#orderSuccessClose");
 
-    if (!paymentForm || !paymentCheckoutButton || !successDialog || !successCloseButton){
+    if (!paymentForm || !paymentCheckoutButton){
         return;
     }
 
-    paymentCheckoutButton.addEventListener("click", () => {
-        const shippingComplete = localStorage.getItem(SHIPPING_COMPLETE_KEY) === "true";
+    const fields = paymentForm.querySelectorAll("input");
 
-        if (!shippingComplete) {
-            window.location.href = "shipping.html";
-            return;
+    function clearInvalidState() {
+        fields.forEach((field) => {
+            field.classList.remove("is-invalid");
+        });
+
+        if (paymentFeedback) {
+            paymentFeedback.textContent = "";
         }
+    }
 
-        if (!paymentForm.reportValidity()) {
+    function validatePaymentForm() {
+        let hasErrors = false;
+
+        fields.forEach((field) => {
+            const value = field.value.trim();
+
+            if (!value || !field.checkValidity()) {
+                field.classList.add("is-invalid");
+                hasErrors = true;
+            } else {
+                field.classList.remove("is-invalid");
+            }
+        });
+
+        if (paymentFeedback) {
+            paymentFeedback.textContent = hasErrors
+                ? "Please fill in all required payment details before continuing."
+                : "";
+        }
+        
+        return !hasErrors;
+    }
+
+    fields.forEach((field) => {
+        field.addEventListener("input", () => {
+            if (field.value.trim() && field.checkValidity()) {
+                field.classList.remove("is-invalid");
+            }
+        });
+    });
+
+    paymentCheckoutButton.addEventListener("click", () => {
+        const isValid = validatePaymentForm();
+
+        if (!isValid) {
             return;
         }
 
         localStorage.removeItem(CART_STORAGE_KEY);
         localStorage.removeItem(COUPON_STORAGE_KEY);
-        localStorage.removeItem(SHIPPING_COMPLETE_KEY);
-
         updateCartBadge();
-        renderCartPage();
 
-        successDialog.showModal();
+        if (typeof renderCartPage === "function") {
+            renderCartPage();
+        }
+
+        if (successDialog) {
+            successDialog.showModal();
+        }
     });
 
-    successCloseButton.addEventListener("click", () => {
-        successDialog.close();
-        window.location.href = "index.html";
-    });
+    if (successCloseButton && successDialog) {
+        successCloseButton.addEventListener("click", () => {
+            successDialog.close();
+            window.location.href = "index.html";
+        });
+    }
 }
 
 updateCartBadge();
