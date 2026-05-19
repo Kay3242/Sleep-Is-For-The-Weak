@@ -257,16 +257,44 @@ function setCouponFeedback(message, type) {
     });
 }
 
-//item display in cart page when item is added to cart
-function renderCartPage() {
-    const cartItemsContainer = document.querySelector("[data-cart-items]");
-    const emptyState = document.querySelector("[data-cart-empty]");
+//maintains order summary across cart, shipping and payment page
+
+function renderOrderSummary() {
     const subtotalElement = document.querySelector("[data-cart-subtotal]");
     const totalElement = document.querySelector("[data-cart-total]");
     const discountElement = document.querySelector("[data-cart-discount]");
     const deliveryElement = document.querySelector("[data-cart-delivery]");
 
-    if (!cartItemsContainer || !emptyState || !subtotalElement || !totalElement) {
+    if (!subtotalElement || !totalElement || !discountElement || !deliveryElement) {
+        return;
+    }
+
+    const cart = getCart();
+    const items = Object.values(cart).filter((item) => item.quantity > 0);
+
+    let subtotal = 0;
+
+    items.forEach((item) => {
+        subtotal += item.price * item.quantity;
+    });
+
+    const discount = getDiscountAmount(subtotal);
+    const deliveryFee = items.length > 0 ? DELIVERY_FEE : 0;
+    const total = Math.max(0, subtotal - discount + deliveryFee);
+
+    subtotalElement.textContent = formatPrice(subtotal);
+    discountElement.textContent = `-${formatPrice(discount)}`;
+    deliveryElement.textContent = formatPrice(deliveryFee);
+    totalElement.textContent = formatPrice(total);
+}
+
+//item display in cart page when item is added to cart
+function renderCartPage() {
+    const cartItemsContainer = document.querySelector("[data-cart-items]");
+    const emptyState = document.querySelector("[data-cart-empty]");
+
+    if (!cartItemsContainer || !emptyState) {
+        renderOrderSummary();
         return;
     }
 
@@ -281,11 +309,8 @@ function renderCartPage() {
         emptyState.hidden = true;
     }
 
-    let subtotal = 0;
-
     items.forEach((item) => {
         const itemSubtotal = item.price * item.quantity;
-        subtotal += itemSubtotal;
 
         const row = document.createElement("article");
         row.className = "cart-item";
@@ -313,13 +338,7 @@ function renderCartPage() {
         cartItemsContainer.appendChild(row);
     });
 
-    const discount = getDiscountAmount(subtotal);
-    const total = Math.max(0, subtotal - discount + DELIVERY_FEE);
-
-    subtotalElement.textContent = formatPrice(subtotal);
-    discountElement.textContent = `-${formatPrice(discount)}`;
-    deliveryElement.textContent = formatPrice(DELIVERY_FEE);
-    totalElement.textContent = formatPrice(total);
+    renderOrderSummary();
 
     cartItemsContainer.querySelectorAll(".cart-qty-btn").forEach((button) => {
         button.addEventListener("click", () => {
@@ -448,6 +467,40 @@ function setupShippingCheckout() {
     });
 }
 
+//ensures user will be able to fill the correct format in the fields in payment field
+
+function setupPaymentInputFormatting() {
+    const cardNumberInput = document.querySelector("#card-number");
+    const expiryInput = document.querySelector("#card-expiry");
+    const cvcInput = document.querySelector("#card-cvc");
+
+    if (cardNumberInput) {
+        cardNumberInput.addEventListener("input", () => {
+            const digits = cardNumberInput.value.replace(/\D/g, "").slice(0, 16);
+            const formatted = digits.replace(/(.{4})/g, "$1 ").trim();
+            cardNumberInput.value = formatted;
+        });
+    }
+
+    if (expiryInput) {
+        expiryInput.addEventListener("input", () => {
+            const digits = expiryInput.value.replace(/\D/g, "").slice(0, 4);
+
+            if (digits.length <= 2) {
+                expiryInput.value = digits;
+            } else {
+                expiryInput.value = `${digits.slice(0, 2)}/${digits.slice(2)}`;
+            }
+        });
+    }
+
+    if (cvcInput) {
+        cvcInput.addEventListener("input", () => {
+            cvcInput.value = cvcInput.value.replace(/\D/g, "").slice(0, 3);
+        });
+    }
+}
+
 //if payment form is completed, success dialog display
 
 function setupPaymentCheckout() {
@@ -537,6 +590,8 @@ bindProductGridCartButton();
 bindDetailPageCartButton();
 bindCouponForm();
 renderCartPage();
+renderOrderSummary();
 setupCartCheckout();
 setupShippingCheckout();
 setupPaymentCheckout();
+setupPaymentInputFormatting();
