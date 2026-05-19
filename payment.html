@@ -57,12 +57,12 @@
         <section class="payment-form-section" aria-labelledby="payment-heading">
             <h1 id="payment-heading">Payment Details</h1>
 
-            <form class="payment-form">
+            <form class="payment-form" id="paymentForm">
                 <fieldset class="payment-field-group">
                     <legend class="payment-group-label">Cardholder name</legend>
                     <label>
                         <span class="sr-only">Cardholder name</span>
-                        <input id="cardholder-name" name="cardholderName" type="text" placeholder="Enter name on card" autocomplete="cc-name">
+                        <input id="cardholder-name" name="cardholderName" type="text" placeholder="Enter name on card" autocomplete="cc-name" required>
                     </label>
                 </fieldset>
 
@@ -70,7 +70,7 @@
                     <legend class="payment-group-label">Card Number</legend>
                     <label class="payment-card-number">
                         <span class="sr-only">Card number</span>
-                        <input id="card-number" name="cardNumber" type="text" inputmode="numeric" placeholder="0000 0000 0000 0000" autocomplete="cc-number">
+                        <input id="card-number" name="cardNumber" type="text" inputmode="numeric" placeholder="0000 0000 0000 0000" autocomplete="cc-number" required>
                         <img src="ASSETS/mastercard-svgrepo-com.svg" alt="Mastercard" class="payment-card-icon">
                     </label>
                 </fieldset>
@@ -80,7 +80,7 @@
                         <legend class="payment-group-label">Expiry date</legend>
                         <label>
                             <span class="sr-only">Expiry date</span>
-                            <input id="card-expiry" name="cardExpiry" type="text" inputmode="numeric" placeholder="MM/YY" autocomplete="cc-exp">
+                            <input id="card-expiry" name="cardExpiry" type="text" inputmode="numeric" placeholder="MM/YY" autocomplete="cc-exp" required>
                         </label>
                     </fieldset>
 
@@ -88,7 +88,7 @@
                         <legend class="payment-group-label">CVC</legend>
                         <label>
                             <span class="sr-only">CVC</span>
-                            <input id="card-cvc" name="cardcvc" type="text" inputmode="numeric" placeholder="000" autocomplete="cc-csc">
+                            <input id="card-cvc" name="cardcvc" type="text" inputmode="numeric" placeholder="000" autocomplete="cc-csc" required>
                         </label>
                     </fieldset>
                 </section>
@@ -125,9 +125,17 @@
                 </li>
             </ul>
 
-            <button type="button" class="cart-checkout-button">Checkout Now</button>
+            <button type="button" class="cart-checkout-button" id="paymentCheckoutButton">Checkout Now</button>
         </aside>
         </section>
+
+        <dialog id="orderSuccessDialog" class="order-success-dialog">
+            <section class="order-success-content">
+                <h2>Purchase Successful</h2>
+                <p>Your order has been placed successfully.</p>
+                <button type="button" id="orderSuccessClose" class="order-success-button">Continue shopping</button>
+            </section>
+        </dialog>
     </main>
 
     <!--Footer-->

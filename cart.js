@@ -1,5 +1,6 @@
 const CART_STORAGE_KEY = "evopia-cart";
 const COUPON_STORAGE_KEY = "evopia-coupon";
+const SHIPPING_COMPLETE_KEY = "evopia-shipping-complete";
 const VALID_COUPON_CODE = "EVOPIAGIFT"
 const COUPON_DISCOUNT_AMOUNT = 10;
 const DELIVERY_FEE = 20;
@@ -345,11 +346,72 @@ function renderCartPage() {
     });
 }
 
-const checkoutButton = document.querySelector(".cart-page-checkout-button");
+//navigation function - cart to shipping page
+const cartCheckoutButton = document.querySelector(".cart-page-checkout-button");
 
-if (checkoutButton) {
-    checkoutButton.addEventListener("click", () => {
+if (cartCheckoutButton) {
+    cartCheckoutButton.addEventListener("click", () => {
         window.location.href = "shipping.html";
+    });
+}
+
+//if shipping form is completed, navigate to payment page
+
+function setupShippingCheckout() {
+    const shippingForm = document.querySelector("#shippingForm");
+    const shippingCheckoutButton = document.querySelector("#shippingCheckoutButton");
+
+    if (!shippingForm || !shippingCheckoutButton) {
+        return;
+    }
+
+    shippingCheckoutButton.addEventListener("click", () => {
+        if (!shippingForm.reportValidity()) {
+            return;
+        }
+
+        localStorage.setItem(SHIPPING_COMPLETE_KEY, "true");
+        window.location.href = "payment.html";
+    });
+}
+
+//if payment form is completed, success dialog display
+
+function setupPaymentCheckout() {
+    const paymentForm = document.querySelector("#paymentForm");
+    const paymentCheckoutButton = document.querySelector("#paymentCheckoutButton");
+    const successDialog = document.querySelector("#orderSuccessDialog");
+    const successCloseButton = document.querySelector("#orderSuccessClose");
+
+    if (!paymentForm || !paymentCheckoutButton || !successDialog || !successCloseButton){
+        return;
+    }
+
+    paymentCheckoutButton.addEventListener("click", () => {
+        const shippingComplete = localStorage.getItem(SHIPPING_COMPLETE_KEY) === "true";
+
+        if (!shippingComplete) {
+            window.location.href = "shipping.html";
+            return;
+        }
+
+        if (!paymentForm.reportValidity()) {
+            return;
+        }
+
+        localStorage.removeItem(CART_STORAGE_KEY);
+        localStorage.removeItem(COUPON_STORAGE_KEY);
+        localStorage.removeItem(SHIPPING_COMPLETE_KEY);
+
+        updateCartBadge();
+        renderCartPage();
+
+        successDialog.showModal();
+    });
+
+    successCloseButton.addEventListener("click", () => {
+        successDialog.close();
+        window.location.href = "index.html";
     });
 }
 
@@ -358,3 +420,5 @@ bindProductGridCartButton();
 bindDetailPageCartButton();
 bindCouponForm();
 renderCartPage();
+setupShippingCheckout();
+setupPaymentCheckout();

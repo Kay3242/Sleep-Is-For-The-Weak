@@ -1915,6 +1915,49 @@ body {
     margin-top: 3rem;
 }
 
+.order-success-dialog {
+    border: 0;
+    border-radius: 1.5rem;
+    padding: 0;
+    max-width: 28rem;
+    width: calc(100% - 2rem);
+}
+
+.order-success-dialog::backdrop {
+    background: rgba(0, 0, 0, 0.45);
+}
+
+.order-success-content {
+    padding: 2rem;
+    text-align: center;
+}
+
+.order-success-content h2 {
+    margin: 0 0 0.75rem;
+    font-size: 2rem;
+    text-transform: uppercase;
+    color: #111;
+}
+
+.order-success-content p {
+    margin: 0 0 1.5rem;
+    font-size: 1rem;
+    color: #444;
+}
+
+.order-success-button {
+    min-width: 12rem;
+    min-height: 3.25rem;
+    padding: 0 1.5rem;
+    border: 0;
+    border-radius: 999rem;
+    background: #000;
+    color: #fff;
+    font-size: 0.95rem;
+    font-weight: 800;
+    cursor: pointer;
+}
+
 @media (max-width: 80rem) {
     .product-catalog-layout {
         grid-template-columns: 1fr !important;
