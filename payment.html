@@ -52,100 +52,48 @@
 
         </header>
 
-    <main class="shipping-page">
-        <section class="shipping-layout">
-            <!--Shipping form-->
-            <section class="shipping-form-section" aria-labelledby="shipping-heading">
-                <h1 id="shipping-heading">Shipping Details</h1>
+    <main class="payment-page">
+        <section class="payment-layout">
+        <section class="payment-form-section" aria-labelledby="payment-heading">
+            <h1 id="payment-heading">Payment Details</h1>
 
-                <form class="shipping-form">
-                    <fieldset class="shipping-field-group">
-                        <legend class="shipping-group-label">Name</legend>
-                        <section class="shipping-two-column">
-                            <label>
-                                <span class="sr-only">First name</span>
-                                <input id="shipping-first-name" name="firstName" type="text" placeholder="Enter first name" autocomplete="given-name">
-                            </label>
+            <form class="payment-form">
+                <fieldset class="payment-field-group">
+                    <legend class="payment-group-label">Cardholder name</legend>
+                    <label>
+                        <span class="sr-only">Cardholder name</span>
+                        <input id="cardholder-name" name="cardholderName" type="text" placeholder="Enter name on card" autocomplete="cc-name">
+                    </label>
+                </fieldset>
 
-                            <label>
-                                <span class="sr-only">Last name</span>
-                                <input id="shipping-last-name" name="lastName" type="text" placeholder="Enter last name" autocomplete="family-name">
-                            </label>
-                        </section>
-                    </fieldset>
-
-                    <fieldset class="shipping-field-group">
-                        <legend class="shipping-group-label">Address</legend>
-                        <section class="shipping-address-row">
-                            <label>
-                                <span class="sr-only">Street address</span>
-                                <input id="shipping-address-line1" name="addressLine1" type="text" placeholder="Enter street address" autocomplete="address-line1">
-                            </label>
-
-                            <label>
-                                <span class="sr-only">Apartment or suite</span>
-                                <input id="shipping-address-line2" name="addressLine2" type="text" placeholder="Apt / Suite" autocomplete="address-line2">
-                            </label>
-                        </section>
-                    </fieldset>
-
-                    <fieldset class="shipping-field-group">
-                        <legend class="shipping-group-label">City</legend>
+                <fieldset class="payment-field-group">
+                    <legend class="payment-group-label">Card Number</legend>
+                    <label class="payment-card-number">
+                        <span class="sr-only">Card number</span>
+                        <input id="card-number" name="cardNumber" type="text" inputmode="numeric" placeholder="0000 0000 0000 0000" autocomplete="cc-number">
+                        <img src="ASSETS/mastercard-svgrepo-com.svg" alt="Mastercard" class="payment-card-icon">
+                    </label>
+                </fieldset>
+                
+                <section class="payment-two-column">
+                    <fieldset class="payment-field-group">
+                        <legend class="payment-group-label">Expiry date</legend>
                         <label>
-                            <span class="sr-only">City</span>
-                            <input id="shipping-city" name="city" type="text" placeholder="Enter city name" autocomplete="address-level2">
+                            <span class="sr-only">Expiry date</span>
+                            <input id="card-expiry" name="cardExpiry" type="text" inputmode="numeric" placeholder="MM/YY" autocomplete="cc-exp">
                         </label>
                     </fieldset>
 
-                    <section class="shipping-three-column">
+                    <fieldset class="payment-field-group">
+                        <legend class="payment-group-label">CVC</legend>
                         <label>
-                            <span class="sr-only">Country</span>
-                            <select id="shipping-country" name="country" autocomplete="country-name">
-                                <option value="" selected disabled>Country</option>
-                                <option>Australia</option>
-                                <option>United States</option>
-                                <option>Canada</option>
-                                <option>United Kingdom</option>
-                            </select>
+                            <span class="sr-only">CVC</span>
+                            <input id="card-cvc" name="cardcvc" type="text" inputmode="numeric" placeholder="000" autocomplete="cc-csc">
                         </label>
-
-                        <label>
-                            <span class="sr-only">State</span>
-                            <select id="shipping-state" name="state" autocomplete="address-level1">
-                                <option value="" selected disabled>State</option>
-                                <option>NSW</option>
-                                <option>VIC</option>
-                                <option>QLD</option>
-                                <option>WA</option>
-                                <option>SA</option>
-                                <option>TAS</option>
-                                <option>ACT</option>
-                                <option>NT</option>
-                            </select>
-                        </label>
-
-                        <label>
-                            <span class="sr-only">ZIP code</span>
-                            <input id="shipping-postcode" name="postcode" type="text" placeholder="ZIP code" autocomplete="postal-code">
-                        </label>
-                    </section>
-
-                    <fieldset class="shipping-field-group">
-                        <legend class="shipping-group-label">Contact</legend>
-                        <section class="shipping-two-column">
-                            <label>
-                                <span class="sr-only">Email address</span>
-                                <input id="shipping-email" name="email" type="email" placeholder="Enter email address" autocomplete="email">
-                            </label>
-
-                            <label>
-                                <span class="sr-only">Phone number</span>
-                                <input id="shipping-phone" name="phone" type="tel" placeholder="Enter phone number" autocomplete="tel">
-                            </label>
-                        </section>
                     </fieldset>
-                </form>
-            </section>
+                </section>
+            </form>
+        </section>
 
         <aside class="cart-summary shipping-summary">
             <h2 id="cart-summary-title">Order Summary</h2>

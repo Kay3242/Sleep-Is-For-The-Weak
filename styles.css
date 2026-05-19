@@ -1833,6 +1833,88 @@ body {
     margin-top: 4rem;
 }
 
+.payment-page {
+    width: min(100%, 85rem);
+    margin: 0 auto;
+    padding: 4rem 2rem 6rem;
+}
+
+.payment-layout {
+    display: grid;
+    grid-template-columns: minmax(0, 1.15fr) minmax(19rem, 23rem);
+    gap: 2.5rem;
+    align-items: start;
+}
+
+.payment-form-section {
+    max-width: 64rem;
+}
+
+.payment-form-section h1 {
+    margin: 0 0 2.5rem;
+    font-size: clamp(2.2rem, 4vw, 3rem);
+    line-height: 0.95;
+    text-transform: uppercase;
+    color: #111;
+}
+
+.payment-form {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.payment-field-group {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.85rem;
+}
+
+.payment-form input {
+    width: 100%;
+    min-height: 3.25rem;
+    padding: 0 1rem;
+    border: 0.0625rem solid #111;
+    border-radius: 999rem;
+    background: #fff;
+    font: inherit;
+    font-size: 0.95rem;
+    color: #111;
+    outline: none;
+}
+
+.payment-form input::placeholder {
+    color: #9a9a9a;
+}
+
+.payment-two-column {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.9rem;
+}
+
+.payment-card-number {
+    position: relative;
+    display: block;
+}
+
+.payment-card-icon {
+    position: absolute;
+    right: 1rem;
+    top: 50%;
+    width: 1.7rem;
+    height: auto;
+    transform: translateY(-50%);
+    pointer-events: none;
+}
+
+.payment-summary {
+    margin-top: 3rem;
+}
+
 @media (max-width: 80rem) {
     .product-catalog-layout {
         grid-template-columns: 1fr !important;
@@ -2048,6 +2130,12 @@ body {
     }
 
     .shipping-summary {
+        margin-top: 0;
+    }
+    .payment-layout {
+        grid-template-columns: 1fr;
+    }
+    .payment-summary {
         margin-top: 0;
     }
 }
@@ -2597,5 +2685,22 @@ body {
 
     .detail-reviews-row dd span:last-child {
         flex: 0 0 auto;
+    }
+    
+    .payment-page {
+        padding: 2rem 1rem 4rem;
+    }
+
+    .payment-form-section h1 {
+        margin-bottom: 2rem;
+        font-size: 2rem;
+    }
+
+    .payment-form {
+        gap: 1.5rem;
+    }
+
+    .payment-two-column {
+        grid-template-columns: 1fr;
     }
 }
