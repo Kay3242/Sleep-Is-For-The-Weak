@@ -26,6 +26,13 @@
                 <img src="ASSETS/evopia new logo.svg" class="logo-vector">
             </a>
 
+        <!--hamburger menu button-->
+            <button type="button" class="nav-toggle" aria-expanded="false" aria-controls="siteNav" aria-label="Open menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+
         <!--Search bar-->
         <form class="search" role="search" autocomplete="off">
             <input type="search" id="siteSearch" placeholder="Search product">
@@ -230,7 +237,21 @@
 
     </footer>
 
+    <nav class="mobile-bottom-nav" aria-label="Mobile quick navigation">
+        <a href="index.html" class="mobile-bottom-link" aria-label="Home">
+            <img src="ASSETS/home-svgrepo-com.svg" alt="" class="mobile-bottom-icon">
+        </a>
+
+        <a href="cart.html" class="mobile-bottom-link mobile-bottom-cart" aria-label="Cart">
+            <img src="ASSETS/cart_mobile.svg" alt="" class="mobile-bottom-icon">
+            <span class="mobile-bottom-count">0</span>
+        </a>
+    </nav>
+
+    
     <script src="pillow_animation.js"></script>
     <script src="search.js"></script>
+    <script src="hamburger.js"></script>
+    
 </body>
 </html>

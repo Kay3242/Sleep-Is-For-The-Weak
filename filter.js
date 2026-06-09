@@ -1,13 +1,8 @@
-
 const productGrid = document.querySelector("#productGrid");
 const productCards = [...document.querySelectorAll(".product-card")];
 const filters = [...document.querySelectorAll(".catalog-filter")];
 const clearFiltersButton = document.querySelector(".clear-filters");
 const sortSelect = document.querySelector("#productSort");
-const cartCount = document.querySelector(".cart-count");
-const addCartButtons = document.querySelectorAll(".product-card-cart");
-
-let cartItems = 0;
 
 function updateProducts() {
     const activeFilters = filters
@@ -15,17 +10,17 @@ function updateProducts() {
         .map((filter) => filter.value);
 
     productCards.forEach((card) => {
-        const category = card.dataset.category;
+        const categories = (card.dataset.category || "").split(" ");
 
         const shouldShow =
             activeFilters.length === 0 ||
-            activeFilters.some((filter) => category.includes(filter));
+            activeFilters.some((filter) => categories.includes(filter));
 
         card.classList.toggle("is-hidden", !shouldShow);
     });
 
     const sortedCards = [...productCards].sort((a, b) => {
-        const sortValue = sortSelect.value;
+        const sortValue = sortSelect ? sortSelect.value : "newest";
 
         if (sortValue === "price-low") {
             return Number(a.dataset.price) - Number(b.dataset.price);
@@ -42,24 +37,27 @@ function updateProducts() {
         return Number(a.dataset.order) - Number(b.dataset.order);
     });
 
-    const visibleCards = sortedCards.filter((card) => !card.classList.contains("is-hidden"));
-    const hiddenCards = sortedCards.filter((card) => card.classList.contains("is-hidden"));
-
-    [...visibleCards, ...hiddenCards].forEach((card) => productGrid.appendChild(card));
+    sortedCards.forEach((card) => {
+        productGrid.appendChild(card);
+    });
 }
 
 filters.forEach((filter) => {
     filter.addEventListener("change", updateProducts);
 });
 
-sortSelect.addEventListener("change", updateProducts);
+if (sortSelect) {
+    sortSelect.addEventListener("change", updateProducts);
+}
 
-clearFiltersButton.addEventListener("click", () => {
-    filters.forEach((filter) => {
-        filter.checked = false;
+if (clearFiltersButton) {
+    clearFiltersButton.addEventListener("click", () => {
+        filters.forEach((filter) => {
+            filter.checked = false;
+        });
+
+        updateProducts();
     });
-
-    updateProducts();
-})
+}
 
 updateProducts();

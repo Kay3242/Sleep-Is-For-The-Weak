@@ -26,6 +26,13 @@
                 <img src="ASSETS/evopia new logo.svg" class="logo-vector">
             </a>
 
+        <!--hamburger menu button-->
+            <button type="button" class="nav-toggle" aria-expanded="false" aria-controls="siteNav" aria-label="Open menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+
         <!--Search bar-->
         <form class="search" role="search" autocomplete="off">
             <input type="search" id="siteSearch" placeholder="Search product">
@@ -77,8 +84,15 @@
                     </section>
 
                     <hr class="detail-divider">
+                    
+                    <!--Spec Buttons-->
+                    <div class="detail-mobile-tabs" aria-label="Product information tabs">
+                        <button type="button" class="detail-mobile-tab is-active" data-detail-tab="description">Description</button>
+                        <button type="button" class="detail-mobile-tab" data-detail-tab="about">About this product</button>
+                    </div>
 
-                    <section class="detail-specs" aria-labelledby="detail-specs-title">
+                    <!--Description-->
+                    <section class="detail-specs detail-mobile-panel is-active" data-detail-panel="description" aria-labelledby="detail-specs-title">
                         <h2 id="detail-specs-title" class="sr-only">Product details</h2>
 
                         <dl class="detail-spec-list">
@@ -100,7 +114,7 @@
                         </dl>
                     </section>
 
-                    <section class="detail-about" aria-labelledby="detail-about-title">
+                    <section class="detail-about data-mobile-panel" data-detail-panel="about" aria-labelledby="detail-about-title">
                         <h2 id="detail-about-title">About this item</h2>
                         <ul>
                             <li>High-density shredded memory foam filling to support the neck and shoulders</li>
@@ -350,7 +364,20 @@
 
     </footer>
 
+    <nav class="mobile-bottom-nav" aria-label="Mobile quick navigation">
+        <a href="index.html" class="mobile-bottom-link" aria-label="Home">
+            <img src="ASSETS/home-svgrepo-com.svg" alt="" class="mobile-bottom-icon">
+        </a>
+
+        <a href="cart.html" class="mobile-bottom-link mobile-bottom-cart" aria-label="Cart">
+            <img src="ASSETS/cart_mobile.svg" alt="" class="mobile-bottom-icon">
+            <span class="mobile-bottom-count">0</span>
+        </a>
+    </nav>
+
     <script src="cart.js"></script>
     <script src="search.js"></script>
+    <script src="hamburger.js"></script>
+    <script src="detailTabs.js"></script>
 </body>
 </html>
