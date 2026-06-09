@@ -34,7 +34,7 @@ function formatPrice(value) {
 function updateCartBadge() {
     const cart = getCart();
     const count = getCartCount(cart);
-    const badges = document.querySelectorAll(".cart-count");
+    const badges = document.querySelectorAll(".cart-count, .mobile-bottom-count");
 
     badges.forEach((badge) => {
         badge.textContent = count;
