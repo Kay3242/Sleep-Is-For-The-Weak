@@ -2760,8 +2760,9 @@ body {
     }
 
     .product-card-cart {
-        width: 2.5rem;
-        flex: 0 0 2.5rem;
+        min-width: 7.5rem;
+        width: auto;
+        flex: 0 0 auto;
     }
 
     .detail-page {
