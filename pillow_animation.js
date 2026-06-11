@@ -6,27 +6,32 @@ const nextPillowButton = document.querySelector("#nextPillow");
 const pillowTitle = document.querySelector("#pillowTitle");
 const pillowDescription = document.querySelector("#pillowDescription");
 const pillowInfo = document.querySelector(".pillow-info");
+const buyButton = document.querySelector(".buy-button");
 
 const pillowProducts = [
     {
         image: "ASSETS/pillow_element.png",
         title: "Luxury Down Pillow",
-        description: "Wake up refreshed with plush duck feather and down pillows crafted for hotel-level comfort every night."
+        description: "Wake up refreshed with plush duck feather and down pillows crafted for hotel-level comfort every night.",
+        link: "luxuryDown.html"
     },
     {
         image: "ASSETS/pillow_element_2.png",
         title: "Contour Luxe Pillow",
-        description: "Experience hotel-inspired comfort with breathable memory foam pillows that adapt to your shape."
+        description: "Experience hotel-inspired comfort with breathable memory foam pillows that adapt to your shape.",
+        link: "contourLuxe.html"
     },
     {
         image: "ASSETS/pillow_element_3.png",
         title: "Memory Foam Pillow",
-        description: "Supportive memory foam comfort designed to ease pressure and keep you aligned through the night."
+        description: "Supportive memory foam comfort designed to ease pressure and keep you aligned through the night.",
+        link: "memoryFoam.html"
     },
     {
         image: "ASSETS/pillow_element_4.png",
         title: "King Memory Foam Pillow",
-        description: "A larger memory foam pillow with generous support for deeper, more restful sleep."
+        description: "A larger memory foam pillow with generous support for deeper, more restful sleep.",
+        link: "kingMemoryFoam.html"
     }
 ];
 
@@ -128,6 +133,10 @@ function showPillow(index, direction) {
 
         if (pillowDescription) {
             pillowDescription.textContent = pillowProducts[currentPillowIndex].description;
+        }
+
+        if (buyButton) {
+            buyButton.href = pillowProducts[currentPillowIndex].link;
         }
 
         setPillowTransform(direction === "next" ? 10 : -10);
